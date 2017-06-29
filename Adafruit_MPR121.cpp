@@ -105,7 +105,7 @@ uint8_t Adafruit_MPR121::readRegister8(uint8_t reg) {
     Wire.beginTransmission(_i2caddr);
     Wire.write(reg);
     Wire.endTransmission(false);
-    while (Wire.requestFrom(_i2caddr, 1) != 1);
+    if (Wire.requestFrom(_i2caddr, 1) != 1);
     return ( Wire.read());
 }
 
@@ -113,7 +113,7 @@ uint16_t Adafruit_MPR121::readRegister16(uint8_t reg) {
     Wire.beginTransmission(_i2caddr);
     Wire.write(reg);
     Wire.endTransmission(false);
-    while (Wire.requestFrom(_i2caddr, 2) != 2);
+    if (Wire.requestFrom(_i2caddr, 2) != 2);
     uint16_t v = Wire.read();
     v |=  ((uint16_t) Wire.read()) << 8;
     return v;
